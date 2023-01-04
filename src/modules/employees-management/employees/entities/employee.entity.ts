@@ -3,6 +3,8 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { AdvanceSalary } from "../../advance-salary/entities/advance-salary.entity";
 import { Attendance } from "../../attendance/entities/attendance.entity";
 import { Leave } from "../../leaves/entities/leave.entity";
+import { Overtime } from "../../overtime/entities/overtime.entity";
+import { SalaryHistory } from "../../salary-history/entities/salary-history.entity";
 
 @Entity()
 export class Employee {
@@ -63,8 +65,14 @@ export class Employee {
     attendances: Attendance[];  
     
     @OneToMany(type => AdvanceSalary, advanceSalary => advanceSalary.id) 
-    advanceSalaries: AdvanceSalary[];  
+    advanceSalaryRequests: AdvanceSalary[];  
 
     @OneToMany(type => Leave, leave => leave.id) 
     leaves: Leave[];
+
+    @OneToMany(type => Overtime, overtime => overtime.id) 
+    overtimes: Overtime[];
+
+    @OneToMany(type => SalaryHistory, salaryHistory => salaryHistory.id) 
+    salaryHistories: SalaryHistory[];
 }
