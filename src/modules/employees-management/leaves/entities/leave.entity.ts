@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Employee } from "../../employees/entities/employee.entity";
 
 @Entity()
-export class AdvanceSalary {
+export class Leave {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -12,22 +12,36 @@ export class AdvanceSalary {
         nullable: false,
     })
     @ApiProperty()
-    date: string;
+    dateOfRequest: string;
+
+    @Column({
+        type: "date",
+        nullable: false,
+    })
+    @ApiProperty()
+    startDate: string;
+
+    @Column({
+        type: "date",
+        nullable: false,
+    })
+    @ApiProperty()
+    endDate: string;
 
     @ManyToOne(type => Employee, employee => employee.id, { nullable:false, eager: true }) 
     employee: Employee; 
 
     @Column({
-        type: "money",
+        type: "date",
         nullable: false,
     })
     @ApiProperty()
-    amountRequested: string;
+    reason: string;
 
     @Column({
-        type: "money",
+        type: "boolean",
         nullable: false,
     })
     @ApiProperty()
-    amountApproved: string;
+    isLeavePaid: boolean;
 }

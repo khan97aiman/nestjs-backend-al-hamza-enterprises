@@ -1,6 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AdvanceSalary } from "../../advance-salary/entities/advance-salary.entity";
 import { Attendance } from "../../attendance/entities/attendance.entity";
+import { Leave } from "../../leaves/entities/leave.entity";
 
 @Entity()
 export class Employee {
@@ -57,6 +59,12 @@ export class Employee {
     @ApiProperty()
     netSalary: string;
 
-    @OneToMany(type => Attendance, attendance => attendance.id) attendances: Attendance[];  
+    @OneToMany(type => Attendance, attendance => attendance.id) 
+    attendances: Attendance[];  
+    
+    @OneToMany(type => AdvanceSalary, advanceSalary => advanceSalary.id) 
+    advanceSalaries: AdvanceSalary[];  
 
+    @OneToMany(type => Leave, leave => leave.id) 
+    leaves: Leave[];
 }

@@ -36,5 +36,5 @@ export class Attendance {
         nullable: false,
     })
     @ApiProperty()
-    isPresent: Boolean;
+    isPresent: boolean;
 }
