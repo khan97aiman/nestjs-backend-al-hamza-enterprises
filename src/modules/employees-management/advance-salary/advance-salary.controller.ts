@@ -1,8 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AdvanceSalaryService } from './advance-salary.service';
 import { CreateAdvanceSalaryDto } from './dto/create-advance-salary.dto';
 import { UpdateAdvanceSalaryDto } from './dto/update-advance-salary.dto';
 
+@ApiTags('advance-salary')
 @Controller('advance-salary')
 export class AdvanceSalaryController {
   constructor(private readonly advanceSalaryService: AdvanceSalaryService) {}

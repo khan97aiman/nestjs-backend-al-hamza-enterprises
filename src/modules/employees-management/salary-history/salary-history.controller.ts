@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { SalaryHistoryService } from './salary-history.service';
 import { CreateSalaryHistoryDto } from './dto/create-salary-history.dto';
 import { UpdateSalaryHistoryDto } from './dto/update-salary-history.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('salary-history')
 @Controller('salary-history')
 export class SalaryHistoryController {
   constructor(private readonly salaryHistoryService: SalaryHistoryService) {}

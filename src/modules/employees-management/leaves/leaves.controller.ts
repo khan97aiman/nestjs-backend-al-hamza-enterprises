@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { LeavesService } from './leaves.service';
 import { CreateLeafDto } from './dto/create-leaf.dto';
 import { UpdateLeafDto } from './dto/update-leaf.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('leaves')
 @Controller('leaves')
 export class LeavesController {
   constructor(private readonly leavesService: LeavesService) {}

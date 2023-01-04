@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { OvertimeService } from './overtime.service';
 import { CreateOvertimeDto } from './dto/create-overtime.dto';
 import { UpdateOvertimeDto } from './dto/update-overtime.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('overtime')
 @Controller('overtime')
 export class OvertimeController {
   constructor(private readonly overtimeService: OvertimeService) {}
