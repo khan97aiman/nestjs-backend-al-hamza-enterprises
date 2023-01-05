@@ -1,26 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateOvertimeDto } from './dto/create-overtime.dto';
-import { UpdateOvertimeDto } from './dto/update-overtime.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { Overtime } from './entities/overtime.entity';
 
 @Injectable()
-export class OvertimeService {
-  create(createOvertimeDto: CreateOvertimeDto) {
-    return 'This action adds a new overtime';
-  }
-
-  findAll() {
-    return `This action returns all overtime`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} overtime`;
-  }
-
-  update(id: number, updateOvertimeDto: UpdateOvertimeDto) {
-    return `This action updates a #${id} overtime`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} overtime`;
+export class OvertimeService extends TypeOrmCrudService<Overtime> {
+  constructor(@InjectRepository(Overtime) repo) {
+    super(repo);
   }
 }
+  
