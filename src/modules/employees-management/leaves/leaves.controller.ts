@@ -1,36 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { LeavesService } from './leaves.service';
 import { CreateLeafDto } from './dto/create-leaf.dto';
 import { UpdateLeafDto } from './dto/update-leaf.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Leave } from './entities/leave.entity';
+import { Crud } from '@nestjsx/crud';
+
+@Crud({
+  model: {
+    type: Leave,
+  },
+  dto: {
+    create: CreateLeafDto,
+    update: UpdateLeafDto,
+  },
+})
 
 @ApiTags('leaves')
 @Controller('leaves')
 export class LeavesController {
-  constructor(private readonly leavesService: LeavesService) {}
-
-  @Post()
-  create(@Body() createLeafDto: CreateLeafDto) {
-    return this.leavesService.create(createLeafDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.leavesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.leavesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLeafDto: UpdateLeafDto) {
-    return this.leavesService.update(+id, updateLeafDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.leavesService.remove(+id);
-  }
+  constructor(private readonly service: LeavesService) {}
 }
